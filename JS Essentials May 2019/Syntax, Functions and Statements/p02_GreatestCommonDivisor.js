@@ -1,9 +1,9 @@
 function getGreatestCommonDivisor(num1, num2){
 
     while(num2){
-        let remainder = num2;
+        let temp = num2;
         num2 = num1%num2;
-        num1=remainder;
+        num1 = temp;
     }
     console.log(num1);
 }
