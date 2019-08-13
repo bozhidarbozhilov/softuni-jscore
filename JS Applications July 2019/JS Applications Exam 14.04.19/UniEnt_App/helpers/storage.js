@@ -1,33 +1,36 @@
-(function storage() {
-    const saveData = function(key, value) {
+const storage = function () {
+    const saveData = function (key, value) {
         sessionStorage.setItem(key, value);
     }
 
-    const removeData = function(key) {
+    const removeData = function (key) {
         sessionStorage.removeItem(key);
     }
 
-    const getData = function(key) {
-        return sessionStorage.getItem(key);
+    const getData = function (key) {
+
+        return JSON.parse(sessionStorage.getItem(key));
+
     }
 
-    const saveUser = function(userInfo, authtoken){
+    const saveUser = function (userInfo) {
+        saveData('userInfo', JSON.stringify(userInfo));
+        saveData('authtoken', JSON.stringify(userInfo._kmd.authtoken));
+    }
+
+    const updateUserInfo = function (userInfo) {
         saveData('userInfo', userInfo);
-        saveData('authtoken', authtoken);
     }
 
-    const updateUserInfo = function(userInfo) {
-        saveData('userInfo', userInfo);
-    }
-
-    const deleteUser = function() {
+    const deleteUser = function () {
         removeData('userInfo');
-        removeDate('authtoken');
+        removeData('authtoken');
     }
 
     return {
         saveUser,
         updateUserInfo,
         deleteUser,
+        getData,
     }
-})();
+}();
