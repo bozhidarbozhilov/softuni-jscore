@@ -22,7 +22,7 @@ const userController = function() {
         userService.signUpUser(context.params)
             .then(responseHandler.handler)
             .then((data)=>{
-                getLoginPage(context);
+                this.redirect('#/signin');
             })
     }
 
@@ -31,7 +31,7 @@ const userController = function() {
             .then(responseHandler.handler)
             .then((data)=>{
                 storage.saveUser(data);
-                homeController.getHomePage(context);
+                this.redirect("#/home");
             })
     }
 
@@ -40,8 +40,7 @@ const userController = function() {
             .then(responseHandler.handler)
             .then(()=>{
                 storage.deleteUser();
-                debugger;
-                homeController.getHomePage(context);
+                this.redirect('#/index');
             })
     }
 

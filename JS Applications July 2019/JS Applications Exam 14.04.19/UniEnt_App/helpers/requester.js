@@ -26,6 +26,7 @@ const requester = function() {
             reqData.body = JSON.stringify(data);
             reqData.headers["Content-Type"] = "application/json";
         }
+
         return fetch(url, reqData);
     }
 
